@@ -10,7 +10,7 @@ setup(
     description="A small package for dvc ml pipeline demo",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/swatishayna/dvclearn",
+    url= "https://github.com/swatishayna/dvclearn",
     author_email="swati308mmu@gmail.com",
     packages=["src"],
     python_requires=">=3.7",

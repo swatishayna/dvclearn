@@ -1,3 +1,6 @@
+![simple-workflow-01@2x](https://user-images.githubusercontent.com/30625979/135624190-d5d50b8c-5b18-4a38-b131-6e2abe20c80d.png)
+
+
 # STEPS:
 ## STEP 01: Create an empty remote repository
 ## STEP 02: intialize a git local repository and connect to remote repository

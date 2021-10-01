@@ -11,7 +11,9 @@ git branch -M main
 git remote add origin https://github.com/USER_NAME/REPO_NAME.git
 git push -u origin main
 ```
+```bash
 touch .gitignore
+``` 
 content of the gitignore can be found from reference repository
 
 ## STEP 03: create and activate conda environment
@@ -25,6 +27,7 @@ touch setup.py
 ```
 paste the below content in the setup.py file and make the necessary changes as per your user ID-
 
+```python
 from setuptools import setup
 
 with open("Readme.md", "r") as f:
@@ -48,7 +51,7 @@ setup(
         'scikit-learn'
     ]
 )
-
+```
 ## STEP 05: create requirement file and install dependencies
 ```bash
 touch requirements.txt
@@ -68,7 +71,7 @@ mkdir -p src/utils config
 ```bash
 touch config/config.yml
 ```
-
+```yaml
 content of config.yml -
 data_source: http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv
 
@@ -76,7 +79,7 @@ artifacts:
   artifacts_dir: artifacts
   raw_local_dir: raw_local_dir
   raw_local_file: data.csv
-
+```
 ## STEP 09: create the stage 01 python file and all_utils file:
 ```bash
 touch src/stage_01_load_save.py src/utils/all_utils.py
@@ -87,6 +90,7 @@ content of both these files can be refererd from the reference given
 ```bash
 touch dvc.yaml
 ```
+```yaml
 content of dvc.yaml file -
 
 stages:
@@ -98,6 +102,7 @@ stages:
       - config/config.yaml
     outs:
       - artifacts/raw_local_dir/data.csv
+```     
 ## STEP 11: run the dvc repro command
 ```bash
 dvc repo

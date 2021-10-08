@@ -3,36 +3,32 @@ import argparse
 import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import ElasticNet
 
-def split_and_save(config_path, params_path):
+def train(config_path, params_path):
     config = read_yaml(config_path)
     params = read_yaml(params_path)
 
     artifacts_dir = config["artifacts"]['artifacts_dir']
-    
-    print(raw_local_file_path)
-    
-    df = pd.read_csv(raw_local_file_path)
-
-    split_ratio = params["base"]["test_size"]
-    random_state = params["base"]["random_state"]
-
-    train, test = train_test_split(df, test_size=split_ratio, random_state=random_state)
-
     split_data_dir = config["artifacts"]["split_data_dir"]
-
-    create_directory([os.path.join(artifacts_dir, split_data_dir)])
-
     train_data_filename = config["artifacts"]["train"]
-    test_data_filename = config["artifacts"]["test"]
-
-
     train_data_path = os.path.join(artifacts_dir, split_data_dir, train_data_filename)
-    test_data_path = os.path.join(artifacts_dir, split_data_dir, test_data_filename)
+    
+    train_data = pd.read_csv(train_data_path)
 
-    for data, data_path in (train, train_data_path), (test, test_data_path):
-        save_local_df(data, data_path)
+    train_x = train_data.drop(columns=['quality'])
+    train_y = train_data['quality']
+    
 
+    alpha = params['model_params']['ElasticNet']['alpha']
+    l1_ratio = params['model_params']['ElasticNet']['l1_ratio']
+    random_state = params['base']['random_state']
+    
+    
+
+    lr = ElasticNet(alpha = alpha, l1_ratio=l1_ratio, random_state=random_state)
+    lr.fit(train_x,train_y)
+    print("###############################")
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
@@ -42,4 +38,4 @@ if __name__ == '__main__':
 
     parsed_args = args.parse_args()
 
-    split_and_save(config_path=parsed_args.config, params_path=parsed_args.params)
+    train(config_path=parsed_args.config, params_path=parsed_args.params)

@@ -4,8 +4,8 @@ stages:
     cmd: python src/stage_o1_load_save.py --config=config/config.yaml
     deps:
     - path: config/config.yaml
-      md5: 840d65fc0f070a9a75d73089679defe9
-      size: 282
+      md5: 115b4b4aced3c01b2752a2b809a16297
+      size: 286
     - path: src/stage_o1_load_save.py
       md5: 998da4efb6199149cca3afd2510f6f6d
       size: 1081
@@ -20,8 +20,8 @@ stages:
     cmd: python src/stage_02_split_data.py --config=config/config.yaml --params=params.yaml
     deps:
     - path: config/config.yaml
-      md5: 840d65fc0f070a9a75d73089679defe9
-      size: 282
+      md5: 115b4b4aced3c01b2752a2b809a16297
+      size: 286
     - path: src/stage_02_split_data.py
       md5: db2336249e75bf11b436596c46585187
       size: 1716
